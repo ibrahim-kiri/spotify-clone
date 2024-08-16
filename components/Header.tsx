@@ -7,6 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { BiSearch } from "react-icons/bi";
 import Button from "./Button";
 import useAuthModal from "@/hooks/useAuthModal";
+import toast from "react-hot-toast";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
 import { FaUserAlt } from "react-icons/fa";
@@ -32,7 +33,9 @@ const Header: React.FC<HeaderProps> = ({
         router.refresh();
 
         if (error) {
-            console.log(error);
+            toast.error(error.message);
+        } else {
+            toast.success('Logged out!')
         }
     }
 
